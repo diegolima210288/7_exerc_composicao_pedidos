@@ -1,5 +1,6 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,23 +9,25 @@ import entities.enums.OrderStatus;
 
 public class Order {
 	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	//atributos
 	private Date moment;
 	private OrderStatus status;
 	
+	private Client client;
 	private List<OrderItem> itens = new ArrayList<OrderItem>();
-	
-	OrderItem orderItem = new OrderItem();
 	
 	//metodo padrão
 	public Order() {
 		
 	}
 
-	//metodo com argumentos
-	public Order(Date moment, OrderStatus status) {
+	//metodo com atributos
+	public Order(Date moment, OrderStatus status, Client client) {
 		this.moment = moment;
 		this.status = status;
+		this.client = client;
 	}
 
 	//metodos GETTERS e SETTERS
@@ -57,7 +60,31 @@ public class Order {
 	//metodo para retornar o total
 	public Double total() {
 		double sum = 0.0;
-		return sum += orderItem.subTotal();
+		//objeto item (tipo classe OrderItem) ira ler o elementos da lista
+		//e somara os valores do metodo subTotal (classe OrderItem) a variavel local
+		for(OrderItem item : itens) {
+			sum += item.subTotal();
+		}
+		return sum;
+	}
+	
+	public String toString() {
+		//objeto StringBuilder é utilizado para concatenar grande quantidade de informações
+		StringBuilder sb = new StringBuilder();
+		sb.append("Order moment: ");
+		sb.append(sdf.format(moment)+"\n");
+		sb.append("Order status: ");
+		sb.append(status+"\n");
+		sb.append("Client: ");
+		sb.append(client+"\n");
+		sb.append("Order items: \n");
+		for (OrderItem item : itens) {
+			sb.append(item+"\n");
+		}
+		sb.append("Total price: $");
+		//para apresentar o valor do metodo total, basta cita-lo;
+		sb.append(String.format("%.2f", total()));
+		return sb.toString();
 	}
 	
 

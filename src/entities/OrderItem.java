@@ -6,16 +6,21 @@ public class OrderItem {
 	private Integer quantity;
 	private Double price;
 	
+	//atributo de composição
+	private Product product;
+	
 	//metodo padrão
 	public OrderItem() {
 		
 	}
 
-	//metodo com atributos
-	public OrderItem(Integer quantity, Double price) {
+	//metodo com argumentos
+	public OrderItem(Integer quantity, Double price, Product product) {
 		this.quantity = quantity;
 		this.price = price;
+		this.product = product;
 	}
+
 
 	//metodos GETTERS e SETTERS
 	public Integer getQuantity() {
@@ -33,7 +38,15 @@ public class OrderItem {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	//metodo para retonar o subtotal
 	public Double subTotal() {
 		return quantity * price;
