@@ -68,6 +68,7 @@ public class Order {
 		return sum;
 	}
 	
+	@Override
 	public String toString() {
 		//objeto StringBuilder é utilizado para concatenar grande quantidade de informações
 		StringBuilder sb = new StringBuilder();
