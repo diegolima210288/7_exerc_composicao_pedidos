@@ -16,7 +16,7 @@ public class Order {
 	private OrderStatus status;
 	
 	private Client client;
-	private List<OrderItem> itens = new ArrayList<OrderItem>();
+	private List<OrderItem> itens = new ArrayList<>();
 	
 	//metodo padrão
 	public Order() {
@@ -29,6 +29,8 @@ public class Order {
 		this.status = status;
 		this.client = client;
 	}
+	//obs: não é necessario acrescentar a lista neste metodo, porque há metodos de adcionamento e remoção de dados da lista
+	
 
 	//metodos GETTERS e SETTERS
 	public Date getMoment() {
@@ -46,7 +48,19 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
-	
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public List<OrderItem> getItens() {
+		return itens;
+	}
+
 	//metodo para adicionar itens da ordem
 	public void addItem(OrderItem item) {
 		itens.add(item);
@@ -58,7 +72,7 @@ public class Order {
 	}
 	
 	//metodo para retornar o total
-	public Double total() {
+	public double total() {
 		double sum = 0.0;
 		//objeto item (tipo classe OrderItem) ira ler o elementos da lista
 		//e somara os valores do metodo subTotal (classe OrderItem) a variavel local
